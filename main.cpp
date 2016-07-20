@@ -4,19 +4,19 @@
 #include<locale.h>
 LRESULT CALLBACK WndProc(HWND, UINT, WPARAM, LPARAM);
 HINSTANCE g_hInst;
-LPCTSTR lpszClass = TEXT("window"); //Å¸ÀÌÆ²ÀÔ·Â
+LPCTSTR lpszClass = TEXT("window"); //íƒ€ì´í‹€ì…ë ¥
 
-//¾Æ·¡ µÎ ÁÙÀº Ãß°¡µÈºÎºĞ.............
+//ì•„ë˜ ë‘ ì¤„ì€ ì¶”ê°€ëœë¶€ë¶„.............
 //HDC GetDC(HWND hWnd);                      
 //int ReleaseDC(HWND hWnd, HDC hDC);
 //...................................
 /*-----------------------------------------------
 
-ÇÑ±ÛÀÌ ±úÁ®³ª¿Ã¶§ ÇØ°á¹ı
+í•œê¸€ì´ ê¹¨ì ¸ë‚˜ì˜¬ë•Œ í•´ê²°ë²•
 
-#include<locale.h> ÀÎÅ¬·çµå.
-ÀÔ·Â¹Ş±â Àü
-_wsetlocale(LC_ALL, L"Korean"); ÄÚµå ÀÔ·Â.
+#include<locale.h> ì¸í´ë£¨ë“œ.
+ì…ë ¥ë°›ê¸° ì „
+_wsetlocale(LC_ALL, L"Korean"); ì½”ë“œ ì…ë ¥.
 
 ------------------------------------------------*/
 char buf[256] = { 0 };
@@ -32,7 +32,7 @@ void CharToWChar(const char* pstrSrc, wchar_t pwstrDest[])
 	mbstowcs(pwstrDest, pstrSrc, nLen);
 }
 
-/*scnÀÇ ÅØ½ºÆ®¸¦ ÀĞ¾î¿Í¼­ ptr Æ÷ÀÎÅÍ·Î ¿Å±â´Â ÇÔ¼ö...¶ó°í »ı°¢ÇÑ´Ù.*/
+/*scnì˜ í…ìŠ¤íŠ¸ë¥¼ ì½ì–´ì™€ì„œ ptr í¬ì¸í„°ë¡œ ì˜®ê¸°ëŠ” í•¨ìˆ˜...ë¼ê³  ìƒê°í•œë‹¤.*/
 char * ReadScn(char * ptr)
 {
 	fgets(ptr, 256, scn);
@@ -86,7 +86,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM IParam)
 		ReadScn(buf);
 		//MultiByteToWideChar(CP_ACP, MB_PRECOMPOSED, char, strlen(buf), buf3, 256);
 		CharToWChar(buf, buf2);
-		TextOut(hdc, 320, 300, buf2, lstrlen(buf2)); //ÀĞ¾îµé¿©¼­ Ãâ·ÂÇÔ.
+		TextOut(hdc, 320, 300, buf2, lstrlen(buf2)); //ì½ì–´ë“¤ì—¬ì„œ ì¶œë ¥í•¨.
 		//TCHAR*str = TEXT("beautiful korea");
 		//TextOut(hdc, 320, 240, str, lstrlen(str));
 		ReleaseDC(hWnd, hdc);
@@ -96,18 +96,18 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM IParam)
 		}
 	case WM_CREATE:
 	{
-		CreateWindow(TEXT("button"), TEXT("Å¬¸¯"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 20, 20, 100, 25, hWnd, (HMENU)0, g_hInst, NULL);
-		CreateWindow(TEXT("button"), TEXT("Å¬¸¯2"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 20, 50, 100, 25, hWnd, (HMENU)1, g_hInst, NULL);
+		CreateWindow(TEXT("button"), TEXT("í´ë¦­"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 20, 20, 100, 25, hWnd, (HMENU)0, g_hInst, NULL);
+		CreateWindow(TEXT("button"), TEXT("í´ë¦­2"), WS_CHILD | WS_VISIBLE | BS_PUSHBUTTON, 20, 50, 100, 25, hWnd, (HMENU)1, g_hInst, NULL);
 	}
 	break;
 	case WM_COMMAND:
 	{
 		switch (LOWORD(wParam)) {
 		case 0:
-			MessageBox(hWnd, TEXT("Ã¹¹øÂ° ¹öÆ° Å¬¸¯"), TEXT("Button"), MB_OK);
+			MessageBox(hWnd, TEXT("ì²«ë²ˆì§¸ ë²„íŠ¼ í´ë¦­"), TEXT("Button"), MB_OK);
 			break;
 		case 1:
-			MessageBox(hWnd, TEXT("µÎ¹øÂ° ¹öÆ° Å¬¸¯"), TEXT("Button"), MB_OK);
+			MessageBox(hWnd, TEXT("ë‘ë²ˆì§¸ ë²„íŠ¼ í´ë¦­"), TEXT("Button"), MB_OK);
 			break;
 		}
 	}
@@ -118,4 +118,3 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT iMessage, WPARAM wParam, LPARAM IParam)
 		}
 	return(DefWindowProc(hWnd, iMessage, wParam, IParam));
 }
-//[ÃâÃ³] [API] ¹öÆ° ¸¸µé±â ¿¹Á¦ | ÀÛ¼ºÀÚ °¡Æ° Äì¿ì¸ŞÀÌP
